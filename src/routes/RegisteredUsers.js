@@ -112,8 +112,8 @@ const RegisteredUsers = () => {
   const [deleteUserIndex, setDeleteUserIndex] = useState(null);
   const [isDeleteConfirmation, setisDeleteConfirmation] = useState(true);
 
-  // const callbackURL = "https://aaa-server.vercel.app";
-  const callbackURL = "http://localhost:6700";
+  const callbackURL = "https://aaa-server.vercel.app";
+  // const callbackURL = "http://localhost:6700";
 
   // Function for Fetching users data
   const fetchUsers = () => {
