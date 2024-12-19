@@ -10,7 +10,7 @@ const NavItem = (props) => {
 
 const navData = [
   { name: "Home", targetPath: "/" },
-  { name: "Add User", targetPath: "/add_user" },
+  { name: "Register", targetPath: "/add_user" },
 ];
 
 const Sidebar = () => {

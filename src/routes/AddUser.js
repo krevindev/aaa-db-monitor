@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 const LoadingPopup = () => {
   return (
     <div className="absolute bg-[rgba(0,0,0,.5)] w-full h-full top-0 left-0 flex justify-center items-center">
-      <div className="bg-white w-[300px] h-[300px] flex justify-center items-center">
-        <h1 className="text-3xl">Adding User, Please Wait...</h1>
+      <div className="bg-white w-[300px] h-fit px-10 py-5 flex justify-center items-center">
+        <h1 className="text-2xl text-center">Adding User, Please Wait...</h1>
       </div>
     </div>
   );
@@ -25,6 +25,10 @@ const AddUser = () => {
 
     setIsLoading(true);
 
+    const clearInputs = () => {
+      e.target.querySelectorAll("input").forEach((inp) => (inp.value = ""));
+    };
+
     try {
       axios
         .post("http://localhost:6700/register_user", formData, {
@@ -34,6 +38,7 @@ const AddUser = () => {
         })
         .then((response) => {
           console.log("Response:", response.data);
+          clearInputs();
           return response.data;
         })
         .then((res) => console.log(res))
@@ -58,7 +63,7 @@ const AddUser = () => {
 
   return (
     <div className="h-full flex justify-center items-center flex-col">
-      <h1 className="text-red-500 font-bold text-3xl my-5">Add User</h1>
+      <h1 className="text-red-500 font-bold text-3xl my-5">Register</h1>
       <form
         onSubmit={handleSubmit}
         className="bg-gray-500 flex flex-col rounded-xl px-5 py-10"
