@@ -72,7 +72,7 @@ const RegisteredUsers = () => {
   const [viewedUserIndex, setViewedUserIndex] = useState(null);
 
 //   const callbackURL = "https://aaa-server.vercel.app";
-  const callbackURL = "https://aaa-server-dxukxr26a-krevindevs-projects.vercel.app";
+  const callbackURL = "https://aaa-server.vercel.app";
   const localCallbackURL = "http://localhost:6700";
 
   useEffect(() => {
@@ -82,6 +82,7 @@ const RegisteredUsers = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            
           },
         })
         .then((res) => {
