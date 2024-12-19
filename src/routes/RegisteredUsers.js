@@ -17,7 +17,7 @@ const UserItem = ({ index, id, name, setViewedUserIndex, deleteUser }) => {
     <li
       onMouseOver={() => setIsHovering(true)}
       onMouseOut={() => setIsHovering(false)}
-      className=" list-none px-10 py-5 m-2 bg-white flex justify-between relative"
+      className=" list-none px-10 py-5 m-2 bg-white flex justify-between relative rounded-md"
     >
       <div>
         <h5>{name}</h5>
@@ -164,12 +164,19 @@ const RegisteredUsers = () => {
   }, [data]);
 
   return (
-    <div className="w-full bg-blue-50 h-full flex justify-center items-center">
+    <div className="w-full bg-gray-100 h-full flex justify-center items-center">
       <div>
-        <h1 className="text-red-500 font-bold text-3xl my-5">
-          Registered Users
-        </h1>
-        <div className="bg-gray-400 w-[500px] min-h-[300px] h-[600px] max-h-fit overflow-y-auto scroll-smooth flex-col items-center justify-center py-2">
+        <div className="flex items-center justify-between">
+          {" "}
+          <h1 className="text-red-500 font-bold text-3xl my-5">
+            Registered Users
+          </h1>
+          <button onClick={fetchUsers} className="flex items-center active:translate-y-1 transition-transform ease-out hover:bg-gray-200 px-5 py-2 rounded-md">
+            <img className="size-5 mr-2" src="/res/icons/refresh-icon.svg"/>
+            Refresh
+          </button>
+        </div>
+        <div className="bg-gray-400 w-[500px] min-h-[300px] h-[600px] max-h-fit overflow-y-auto scroll-smooth flex-col items-center justify-center py-2 relative">
           {data.length >= 1 ? (
             data.map((dat, index) => (
               <UserItem
