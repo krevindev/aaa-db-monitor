@@ -31,7 +31,7 @@ const AddUser = () => {
 
     try {
       axios
-        .post("http://localhost:6700/register_user", formData, {
+        .post("https://aaa-server.vercel.app/register_user", formData, {
           headers: {
             "Content-Type": "application/json",
           },

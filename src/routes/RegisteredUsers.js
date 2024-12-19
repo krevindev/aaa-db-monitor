@@ -171,7 +171,7 @@ const RegisteredUsers = () => {
           <h1 className="text-red-500 font-bold text-3xl my-5">
             Registered Users
           </h1>
-          <button onClick={fetchUsers} className="flex items-center active:translate-y-1 transition-transform ease-out hover:bg-gray-200 px-5 py-2 rounded-md">
+          <button onClick={fetchUsers} className="flex max-w-[80vw] items-center active:translate-y-1 transition-transform ease-out hover:bg-gray-200 px-5 py-2 rounded-md">
             <img className="size-5 mr-2" src="/res/icons/refresh-icon.svg"/>
             Refresh
           </button>
