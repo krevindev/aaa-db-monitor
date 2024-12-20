@@ -8,20 +8,14 @@ const DonationPage = () => {
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [paymentLink, setPaymentLink] = useState(null);
 
-//   useEffect(() => {
-//     if (amount < 100) {
-//       setAmount(100);
-//     }
-//   }, [amount]);
-
   const getPaymentLink = async () => {
+    setIsSubmitEnabled(false);
+
     try {
       const paymentLink = await axios
         .post(
           callbackURL + "/get_payment_link",
           {
-            name: "AAA Registration",
-            description: "AAA Registration Fee",
             amount: amount,
           },
           {
@@ -34,41 +28,30 @@ const DonationPage = () => {
         .then((res) => {
           console.log(res.data);
           setPaymentLink(res.data);
+          setIsSubmitEnabled(true);
           return res.data;
         })
         .catch((err) => console.error(err));
       return paymentLink;
     } catch (err) {
+      setIsSubmitEnabled(false);
       console.error(err);
     }
   };
 
+  // gets payment link when the amount state changes
   useEffect(() => {
-    getPaymentLink();
-  }, []);
+    // Prevents requesting when value is below 100
+    if (amount >= 100) {
+      getPaymentLink();
+    }
+  }, [amount]);
 
-  useEffect(() => {
-    if (paymentLink !== null) setIsSubmitEnabled(true);
-  }, [paymentLink]);
-
-  const handleChange = (e) => {
-    e.preventDefault();
-
+  const handleChange = async (e) => {
     setIsSubmitEnabled(false);
 
-    const inputValue = e.target.value;
-    console.log(inputValue);
-    if (inputValue >= 100) setAmount(inputValue);
-
-    getPaymentLink()
-      .then((res) => {
-        console.log(res);
-        setIsSubmitEnabled(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsSubmitEnabled(false);
-      });
+    const inputValue = await e.target.value;
+    setAmount(inputValue);
   };
 
   const handleSubmit = (e) => {
