@@ -3,6 +3,8 @@ import "./App.css";
 import RegisteredUsers from "./routes/RegisteredUsers";
 import Sidebar from "./components/Sidebar";
 import AddUser from "./routes/AddUser";
+import CompletePayment from "./routes/CompletePayment";
+import DonationPage from "./routes/DonationPage";
 
 const AppLayout = () => (
   <div className="App w-full min-h-screen bg-white flex">
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: "/add_user",
         element: <AddUser />,
+      },
+      {
+        path: "/complete-payment",
+        element: <CompletePayment />,
+      },
+      {
+        path: "/donate",
+        element: <DonationPage />,
       },
       {
         path: "*",

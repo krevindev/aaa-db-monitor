@@ -11,6 +11,7 @@ const NavItem = (props) => {
 const navData = [
   { name: "Home", targetPath: "/" },
   { name: "Register", targetPath: "/add_user" },
+  { name: "Donate", targetPath: "/donate" },
 ];
 
 const Sidebar = () => {

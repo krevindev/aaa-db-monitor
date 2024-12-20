@@ -86,7 +86,7 @@ const ViewUser = ({ viewedUserData, setViewedUserIndex }) => {
       className="bg-[rgba(0,0,0,.5)] backdrop-blur-sm w-full h-full fixed top-0 left-0 flex justify-center items-center"
     >
       <div className="bg-white min-w-fit h-fit pb-10 px-5 relative pt-5">
-        <h1 className="sticky top-0 text-3xl">{viewedUserData.name}</h1>
+        <h1 className="sticky top-0 text-3xl">{viewedUserData.firstName}</h1>
         <div className="mt-10">
           {Object.keys(viewedUserData).map((dataKey, index) => {
             return (
@@ -109,8 +109,6 @@ const ViewUser = ({ viewedUserData, setViewedUserIndex }) => {
 const RegisteredUsers = () => {
   const [data, setData] = useState([]);
   const [viewedUserIndex, setViewedUserIndex] = useState(null);
-  const [deleteUserIndex, setDeleteUserIndex] = useState(null);
-  const [isDeleteConfirmation, setisDeleteConfirmation] = useState(true);
 
   const callbackURL = "https://aaa-server.vercel.app";
   // const callbackURL = "http://localhost:6700";
@@ -150,6 +148,7 @@ const RegisteredUsers = () => {
       })
       .then((data) => {
         console.log("User deleted successfully");
+
         fetchUsers();
       })
       .catch((err) => console.error("Error: ", err));
@@ -172,7 +171,7 @@ const RegisteredUsers = () => {
             Registered Users
           </h1>
           <button onClick={fetchUsers} className="flex max-w-[80vw] items-center active:translate-y-1 transition-transform ease-out hover:bg-gray-200 px-5 py-2 rounded-md">
-            <img className="size-5 mr-2" src="/res/icons/refresh-icon.svg"/>
+            <img className="size-5 mr-2" src="/res/icons/refresh-icon.svg" alt="refresh-icon"/>
             Refresh
           </button>
         </div>
@@ -183,7 +182,7 @@ const RegisteredUsers = () => {
                 key={index}
                 id={dat._id}
                 index={index}
-                name={dat.name}
+                name={dat.firstName}
                 setViewedUserIndex={setViewedUserIndex}
                 deleteUser={deleteUser}
               />

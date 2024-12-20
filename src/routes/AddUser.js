@@ -11,13 +11,28 @@ const LoadingPopup = () => {
   );
 };
 
+const emptyUserData = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  amountTotal: "",
+};
+const dummyAmountsData = [
+  { text: "P 1000.00", value: 1000.0 },
+  { text: "P 3500.00", value: 3500.0 },
+  { text: "P 5000.00", value: 5000.0 },
+];
+
+// MAIN COMPONENT
 const AddUser = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [amountTotal, setAmountTotal] = useState(100.0);
+  const [formData, setFormData] = useState(emptyUserData);
+
+  useEffect(() => {
+    setFormData({ ...formData, amountTotal: amountTotal });
+  }, [amountTotal]);
 
   // Handle the Submission
   const handleSubmit = (e) => {
@@ -31,7 +46,7 @@ const AddUser = () => {
 
     try {
       axios
-        .post("https://aaa-server.vercel.app/register_user", formData, {
+        .post("http://localhost:6700/register_user", formData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -53,7 +68,7 @@ const AddUser = () => {
 
   useEffect(() => {
     console.log(formData);
-  }, [formData]);
+  }, [formData, amountTotal]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -66,13 +81,21 @@ const AddUser = () => {
       <h1 className="text-red-500 font-bold text-3xl my-5">Register</h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-500 flex flex-col rounded-xl px-5 py-10"
+        className="bg-gray-500 w-1/4 flex flex-col rounded-xl px-5 py-10"
       >
         <input
-          name="name"
+          name="firstName"
           className="py-1 px-3 my-2 mx-1"
           type="text"
-          placeholder="Name"
+          placeholder="First Name"
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="lastName"
+          className="py-1 px-3 my-2 mx-1"
+          type="text"
+          placeholder="Last Name"
           onChange={handleChange}
           required
         />
@@ -92,8 +115,47 @@ const AddUser = () => {
           onChange={handleChange}
           required
         />
+         <input
+          name="phoneNumber"
+          className="py-1 px-3 my-2 mx-1"
+          type="text"
+          placeholder="Phone Number"
+          onChange={handleChange}
+          required
+        />
+         <input
+          name="address"
+          className="py-1 px-3 my-2 mx-1"
+          type="text"
+          placeholder="Address"
+          onChange={handleChange}
+          required
+        />
+        <div className="py-5 text-white">
+          <h1>Select Amount:</h1>
+          <div className="flex flex-col justify-center">
+            {dummyAmountsData.map((dummyDat, index) => {
+              return (
+                <div key={index}>
+                  <input
+                    onClick={() => setAmountTotal(dummyDat.value)}
+                    className="mr-3"
+                    name="amount-checkbox"
+                    type="radio"
+                    value={dummyDat.value}
+                    required
+                  />
+                  <label htmlFor="amount-checkbox">{dummyDat.text}</label>
+                </div>
+              );
+            })}
+          </div>
+          <div className="mt-10">
+            <h3>Total: P {parseFloat(amountTotal).toLocaleString()}</h3>
+          </div>
+        </div>
         <button className={`bg-green-400 py-3`} type="submit">
-          Add
+          Register
         </button>
       </form>
 
