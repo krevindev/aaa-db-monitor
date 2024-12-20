@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-// const callbackURL = "http://localhost:6700";
-const callbackURL = "https://aaa-server.vercel.app";
-
-
+const callbackURL = "http://localhost:6700";
+// const callbackURL = "https://aaa-server.vercel.app";
 const DonationPage = () => {
   const [amount, setAmount] = useState(100);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
   const [paymentLink, setPaymentLink] = useState(null);
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (amount < 100) {
-      setAmount(100);
-    }
-  }, [amount]);
+//   useEffect(() => {
+//     if (amount < 100) {
+//       setAmount(100);
+//     }
+//   }, [amount]);
 
   const getPaymentLink = async () => {
     try {
       const paymentLink = await axios
         .post(
           callbackURL + "/get_payment_link",
-          { amount: amount },
+          {
+            name: "AAA Registration",
+            description: "AAA Registration Fee",
+            amount: amount,
+          },
           {
             method: "POST",
             headers: {
@@ -58,7 +57,7 @@ const DonationPage = () => {
     setIsSubmitEnabled(false);
 
     const inputValue = e.target.value;
-
+    console.log(inputValue);
     if (inputValue >= 100) setAmount(inputValue);
 
     getPaymentLink()

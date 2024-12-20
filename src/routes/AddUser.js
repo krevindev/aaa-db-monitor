@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoadingPopup = () => {
   return (
@@ -30,6 +31,8 @@ const AddUser = () => {
   const [amountTotal, setAmountTotal] = useState(100.0);
   const [formData, setFormData] = useState(emptyUserData);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     setFormData({ ...formData, amountTotal: amountTotal });
   }, [amountTotal]);
@@ -57,7 +60,10 @@ const AddUser = () => {
           clearInputs();
           return response.data;
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          navigate("/");
+        })
         .catch((err) => {
           console.error("Error:", err);
         })

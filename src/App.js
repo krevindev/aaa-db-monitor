@@ -28,14 +28,12 @@ const router = createBrowserRouter([
       {
         path: "/add_user",
         element: <AddUser />,
-      },
-      {
-        path: "/complete-payment",
-        element: <CompletePayment />,
-      },
-      {
-        path: "/donate",
-        element: <DonationPage />,
+      },{
+        path: '/complete-payment',
+        element: <CompletePayment/>
+      },{
+        path: '/donate',
+        element: <DonationPage/>
       },
       {
         path: "*",

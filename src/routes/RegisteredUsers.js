@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const callbackURL = "http://localhost:6700";
+// const callbackURL = "https://aaa-server.vercel.app";
+
 // User Item
 const UserItem = ({ index, id, name, setViewedUserIndex, deleteUser }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -110,8 +113,6 @@ const RegisteredUsers = () => {
   const [data, setData] = useState([]);
   const [viewedUserIndex, setViewedUserIndex] = useState(null);
 
-  const callbackURL = "https://aaa-server.vercel.app";
-  // const callbackURL = "http://localhost:6700";
 
   // Function for Fetching users data
   const fetchUsers = () => {
