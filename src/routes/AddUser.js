@@ -43,10 +43,11 @@ const AddUser = () => {
     const clearInputs = () => {
       e.target.querySelectorAll("input").forEach((inp) => (inp.value = ""));
     };
+    const callbackURL = "https://aaa-server.vercel.app";
 
     try {
       axios
-        .post("http://localhost:6700/register_user", formData, {
+        .post(callbackURL + "/register_user", formData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -115,7 +116,7 @@ const AddUser = () => {
           onChange={handleChange}
           required
         />
-         <input
+        <input
           name="phoneNumber"
           className="py-1 px-3 my-2 mx-1"
           type="text"
@@ -123,7 +124,7 @@ const AddUser = () => {
           onChange={handleChange}
           required
         />
-         <input
+        <input
           name="address"
           className="py-1 px-3 my-2 mx-1"
           type="text"
