@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const callbackURL = "http://localhost:6700";
-// const callbackURL = "https://aaa-server.vercel.app";
+// const callbackURL = "http://localhost:6700";
+const callbackURL = "https://aaa-server.vercel.app";
 
 // User Item
 const UserItem = ({ index, id, name, setViewedUserIndex, deleteUser }) => {

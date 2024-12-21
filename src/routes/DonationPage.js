@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const callbackURL = "http://localhost:6700";
-// const callbackURL = "https://aaa-server.vercel.app";
+// const callbackURL = "http://localhost:6700";
+const callbackURL = "https://aaa-server.vercel.app";
 const DonationPage = () => {
   const [amount, setAmount] = useState(100);
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
@@ -47,6 +47,7 @@ const DonationPage = () => {
     }
   }, [amount]);
 
+  // handle onchange input
   const handleChange = async (e) => {
     setIsSubmitEnabled(false);
 
@@ -55,9 +56,8 @@ const DonationPage = () => {
   };
 
   const handleSubmit = (e) => {
-    // if (isSubmitEnabled) navigate(paymentLink);
     e.preventDefault();
-    window.location = paymentLink;
+    if (isSubmitEnabled) window.location = paymentLink;
   };
 
   return (
